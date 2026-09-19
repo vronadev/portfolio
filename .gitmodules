@@ -1,0 +1,9 @@
+[submodule "themes/terminal"]
+	path = themes/terminal
+	url = https://github.com/panr/hugo-theme-terminal
+[submodule "themes/rewired"]
+	path = themes/rewired
+	url = https://github.com/RigleGit/rewired
+[submodule "themes/nerdy"]
+	path = themes/nerdy
+	url = https://github.com/hugo-themes/nerdy
