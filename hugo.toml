@@ -1,4 +1,4 @@
-baseURL = '/portfolio'
+baseURL = 'https://vrona.dev/'
 locale = 'en-us'
 title = 'vrona.dev'
 theme = 'terminal'
