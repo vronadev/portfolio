@@ -7,7 +7,7 @@ framed = true
 ```rust
 let matt = Dev {
     name: "Mateusz",
-    location: "Poland",
+    location: "Polska",
     daily_driver: ["PHP", "JS", "TS"],
     current_obsession: "Rust",
     interests: [
@@ -17,10 +17,6 @@ let matt = Dev {
     ],
 };
 ```
-
-{{< callout title="Ważne" >}}
-użycie &str jest celowe, żeby odchudzić ten blok kodu
-{{</ callout >}}
 
 Jestem **Mateusz** - niezależny programista z Polski. Tworzę praktyczne aplikacje webowe, dłubię w **Ruście** i wpadam w głębokie side-questy związane z grafiką komputerową, narzędziami *local-first* oraz self-hostingiem.
 

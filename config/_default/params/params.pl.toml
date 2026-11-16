@@ -1,4 +1,4 @@
-subtitle = "A simple, retro theme for Hugo"
+subtitle = "Blog osobisty i zbiór moich projektów"
 owner = "vrona.dev"
 keywords = ""
 copyright = "vrona.dev"
@@ -17,5 +17,5 @@ updatedDatePrefix = "Aktualizacja"
 TocTitle = "Spis treści"
 
 [logo]
-    logoText = "Terminal"
+    logoText = "vrona.dev"
     logoHomeLink = "/pl"

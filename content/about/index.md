@@ -1,7 +1,6 @@
 +++
 title = "About"
 date = "2026-11-16"
-author = "Mateusz Wroński"
 Toc = false
 +++
 

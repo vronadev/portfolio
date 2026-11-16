@@ -1,4 +1,5 @@
 +++
+title = 'Blog'
 framed = true
 +++
 

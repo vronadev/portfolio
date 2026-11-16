@@ -1,7 +1,6 @@
 +++
 title = "O mnie"
 date = "2026-11-16"
-author = "Mateusz Wroński"
 Toc = false
 +++
 
@@ -10,7 +9,7 @@ Toc = false
 ```rust
 let matt = Dev {
     name: "Mateusz",
-    location: "Poland",
+    location: "Polska",
     web_stack: vec!["PHP", "JavaScript", "TypeScript"],
     fanboy_of: "Rust",
     side_quests: vec![
@@ -26,7 +25,7 @@ let matt = Dev {
 ```
 
 {{< callout title="Ważne" >}}
-użycie &str jest celowe, żeby odchudzić ten blok kodu
+użycie &str jest celowe - ma na celu odchudzić ten blok kodu
 {{</ callout >}}
 
 Nazywam się Mateusz i jestem niezależnym programistą z Polski. Tworzę praktyczne rozwiązania programistyczne, które pomagają rozwiązywać realne problemy, a to miejsce służy mi do dokumentowania tego, co aktualnie buduję, psuję i czego się uczę.
