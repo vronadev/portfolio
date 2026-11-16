@@ -1,0 +1,21 @@
+subtitle = "A simple, retro theme for Hugo"
+owner = "vrona.dev"
+keywords = ""
+copyright = "vrona.dev"
+menuMore = "Pokaż więcej"
+readMore = "Czytaj dalej"
+readOtherPosts = "Czytaj inne posty"
+newerPosts = "Nowsze posty"
+olderPosts = "Starsze posty"
+missingContentMessage = "Nie znaleziono strony..."
+missingBackButtonLabel = "Powrót na stronę główną"
+minuteReadingTime = "min czytania"
+words = "słów"
+
+
+updatedDatePrefix = "Aktualizacja"
+TocTitle = "Spis treści"
+
+[logo]
+    logoText = "Terminal"
+    logoHomeLink = "/pl"

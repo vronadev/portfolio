@@ -1,0 +1,32 @@
+{{ define "main" }}
+  {{ if .Content }}
+    <div class="index-content {{ if .Params.framed -}}framed{{- end -}}">
+      {{ .Content }}
+    </div>
+  {{ end }}
+
+  <div class="projects-grid">
+    {{ range .Pages }}
+      <a href="{{ .Permalink }}" class="project-card">
+        {{ $cover := .Resources.GetMatch "cover*" }}
+        {{ if $cover }}
+          <img src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" class="project-card__cover">
+        {{ else if .Params.cover }}
+          <img src="{{ .Params.cover | absURL }}" alt="{{ .Title }}" class="project-card__cover">
+        {{ end }}
+
+        <div class="project-card__body">
+          <h2 class="project-card__title">{{ .Title }}</h2>
+          {{ with .Description }}
+            <p class="project-card__desc">{{ . }}</p>
+          {{ end }}
+          {{ with .Params.tags }}
+            <div class="project-card__tags">
+              {{ range . }}<span>#{{ . }}</span>{{ end }}
+            </div>
+          {{ end }}
+        </div>
+      </a>
+    {{ end }}
+  </div>
+{{ end }}

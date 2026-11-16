@@ -1,0 +1,25 @@
+{{ define "main" }}
+  <div class="post">
+    <h1 class="post-title">404 — {{ site.Params.missingContentMessage | default "Page not found..." }}</h1>
+
+    <div class="post-content">
+      <a href="{{ "" | relLangURL }}">{{ site.Params.missingBackButtonLabel | default "Back to home page" }}&nbsp;→</a>
+    </div>
+  </div>
+
+  {{ if eq site.Language.Lang "en" }}
+  <script>
+    if (window.location.pathname.startsWith('/pl/') || window.location.pathname === '/pl') {
+      fetch('/pl/404.html')
+        .then(r => r.ok ? r.text() : null)
+        .then(html => {
+          if (html) {
+            document.open();
+            document.write(html);
+            document.close();
+          }
+        });
+    }
+  </script>
+  {{ end }}
+{{ end }}
