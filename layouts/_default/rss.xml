@@ -1,0 +1,60 @@
+{{- $pctx := . -}}
+{{- if .IsHome -}}{{ $pctx = .Site }}{{- end -}}
+{{- $pages := slice -}}
+{{- if .IsHome -}}
+  {{- $pages = where $pctx.RegularPages "Section" "in" (slice "posts" "thoughts" "bookmarks" "projects") -}}
+  {{- if ne .Language.Lang site.Sites.Default.Language.Lang -}}
+    {{- $enPages := where site.Sites.Default.RegularPages "Section" "in" (slice "posts" "thoughts" "bookmarks" "projects") -}}
+    {{- $pages = $pages | lang.Merge $enPages -}}
+  {{- end -}}
+{{- else if .IsSection -}}
+  {{- $pages = $pctx.RegularPagesRecursive -}}
+  {{- $defaultSection := site.Sites.Default.GetPage "section" .Section -}}
+  {{- if and $defaultSection (ne .Language.Lang site.Sites.Default.Language.Lang) -}}
+    {{- $pages = $pages | lang.Merge $defaultSection.RegularPagesRecursive -}}
+  {{- end -}}
+{{- else -}}
+  {{- $pages = $pctx.Pages -}}
+{{- end -}}
+
+{{- $pages = where $pages "Params.excludeFromRSS" "!=" true -}}
+{{- $limit := .Site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 -}}
+  {{- $pages = $pages | first $limit -}}
+{{- end -}}
+
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ .Site.Title }}{{ if not .IsHome }} ({{ .Title }}){{ end }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>Recent content {{ if not .IsHome }}in {{ .RelPermalink }} {{ end }}on {{ .Site.Title }}</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>{{ site.Language.LanguageCode }}</language>
+    {{- with .OutputFormats.Get "RSS" }}
+    {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+    {{- end }}
+    {{- range $pages }}
+    {{- $itemLink := .Permalink -}}
+    {{- if .Params.external_url -}}{{- $itemLink = .Params.external_url -}}{{- end -}}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ $itemLink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <author>{{ .Params.Author | default $.Site.Params.Author | default "matt@vrona.dev" }}</author>
+      <guid>{{ $itemLink }}</guid>
+      <description>
+        {{- $desc := .Content -}}
+        {{- if .Params.external_url -}}
+          {{- $desc = printf "<p>Link: <a href=\"%s\">%s</a></p>%s" .Params.external_url .Params.external_url .Content -}}
+        {{- end -}}
+        {{- $footer := "" -}}
+        {{- if eq $.Language.Lang "pl" -}}
+          {{- $footer = "" -}}
+        {{- end -}}
+        {{- printf "%s%s" $desc $footer | transform.XMLEscape | safeHTML -}}
+      </description>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

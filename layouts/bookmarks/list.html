@@ -1,0 +1,28 @@
+{{ define "main" }}
+  {{ if .Content }}
+    <div class="index-content {{ if .Params.framed -}}framed{{- end -}}">
+      {{ .Content }}
+    </div>
+  {{ end }}
+
+  {{- $pages := .RegularPages -}}
+  {{- $defaultSection := site.Sites.Default.GetPage "section" "bookmarks" -}}
+  {{- if and $defaultSection (ne .Language.Lang site.Sites.Default.Language.Lang) -}}
+    {{- $pages = $pages | lang.Merge $defaultSection.RegularPages -}}
+  {{- end -}}
+
+  <div class="post">
+    <ul style="padding-left: 15px; margin-top: 20px;">
+      {{ range $pages }}
+        {{- $link := .Params.external_url | default .Permalink -}}
+        <li style="margin-bottom: 16px;">
+          <div><strong>{{ .Title }}</strong></div>
+          {{- if .Content -}}
+            <div class="bookmark-desc">{{ .Content }}</div>
+          {{- end -}}
+          <a href="{{ $link }}" target="_blank" rel="noopener">{{ $link }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}

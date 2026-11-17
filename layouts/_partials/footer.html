@@ -1,8 +1,8 @@
 <footer class="footer">
   <div class="footer__inner">
-    {{ if $.Site.Copyright }}
+    {{ if and $.Site.Copyright $.Site.Params.copyrightSince }}
       <div class="copyright copyright--user">
-        <span>© {{ now.Year }} {{ $.Site.Copyright | safeHTML }}</span>
+        <span>© {{ $.Site.Params.copyrightSince | safeHTML }}-{{ now.Year }} {{ $.Site.Copyright | safeHTML }}</span>
     {{ else }}
       <div class="copyright">
         <span>© {{ now.Year }} vrona.dev </a></span>

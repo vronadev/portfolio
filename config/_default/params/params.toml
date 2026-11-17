@@ -2,8 +2,12 @@
 # the list of set content will show up on your index page (baseurl).
 contentTypeName = "posts"
 
+mainSections = ["posts", "thoughts", "bookmarks", "projects"]
+
+copyrightSince = '2026'
+
 # if you set this to 0, only submenu trigger will be visible. -1 shows all items
-showMenuItems = 4
+showMenuItems = 10
 
 showLanguageSelector = true
 

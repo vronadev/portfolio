@@ -1,0 +1,53 @@
+{{ define "main" }}
+  {{ if .Content }}
+    <div class="index-content {{ if .Params.framed -}}framed{{- end -}}">
+      {{ .Content }}
+    </div>
+  {{ else if ne .Parent .Site.Home }}
+    <div class="index-content framed">
+      <h1>{{ .Title }}</h1>
+    </div>
+  {{ end }}
+
+  {{- $pages := .RegularPages -}}
+  {{- if eq .Parent .Site.Home -}}
+    {{- $pages = .RegularPagesRecursive -}}
+    {{- $defaultSection := site.Sites.Default.GetPage "section" "thoughts" -}}
+    {{- if and $defaultSection (ne .Language.Lang site.Sites.Default.Language.Lang) -}}
+      {{- $pages = $pages | lang.Merge $defaultSection.RegularPagesRecursive -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $defaultDay := site.Sites.Default.GetPage .RelPermalink -}}
+    {{- if not $defaultDay -}}
+      {{- $enPath := strings.TrimPrefix (printf "/%s" .Language.Lang) .RelPermalink -}}
+      {{- $defaultDay = site.Sites.Default.GetPage $enPath -}}
+    {{- end -}}
+    {{- if and $defaultDay (ne .Language.Lang site.Sites.Default.Language.Lang) -}}
+      {{- $pages = $pages | lang.Merge $defaultDay.RegularPages -}}
+    {{- end -}}
+  {{- end -}}
+
+  <div class="posts">
+    {{ range (.Paginate $pages).Pages }}
+      <article class="post on-list">
+        <div class="post-meta">
+          <a href="{{ .Permalink }}" style="text-decoration: none;">
+            <time class="post-date">
+              {{ .Date.Format "2006-01-02 15:04" }}
+            </time>
+          </a>
+          {{- if eq $.Parent $.Site.Home -}}
+            &nbsp;·&nbsp;
+            <a href="{{ .Parent.RelPermalink }}">[{{ .Date.Format "2006-01-02" }}]</a>
+          {{- end -}}
+        </div>
+
+        <div class="post-content">
+          {{ .Content }}
+        </div>
+      </article>
+    {{ end }}
+
+    {{ partial "pagination.html" . }}
+  </div>
+{{ end }}

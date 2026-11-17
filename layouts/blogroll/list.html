@@ -1,0 +1,17 @@
+{{ define "main" }}
+  {{ if .Content }}
+    <div class="index-content {{ if .Params.framed -}}framed{{- end -}}">
+      {{ .Content }}
+    </div>
+  {{ end }}
+
+  <div class="post">
+    <ul style="padding-left: 15px; margin-top: 20px;">
+      {{ range sort site.Data.blogroll.links "name" "asc" }}
+        <li style="margin-bottom: 8px;">
+          <strong>{{ .name }}</strong> :: <a href="{{ .url }}" target="_blank" rel="noopener">{{ strings.TrimPrefix "https://" (strings.TrimPrefix "http://" .url) }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}

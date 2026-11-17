@@ -13,3 +13,43 @@
     name = "Projects"
     url = "/projects"
     weight = 3
+[[main]]
+    identifier = "thoughts"
+    name = "Thoughts"
+    url = "/thoughts"
+    weight = 4
+[[main]]
+    identifier = "bookmarks"
+    name = "Bookmarks"
+    url = "/bookmarks"
+    weight = 5
+[[main]]
+    identifier = "blogroll"
+    name = "Blogroll"
+    url = "/blogroll"
+    weight = 6
+[[main]]
+    identifier = "rss"
+    name = "RSS"
+    url = "/index.xml"
+    weight = 7
+[[main]]
+    name = "Thoughts"
+    parent = "rss"
+    url = "/thoughts/index.xml"
+    weight = 1
+[[main]]
+    name = "Bookmarks"
+    parent = "rss"
+    url = "/bookmarks/index.xml"
+    weight = 2
+[[main]]
+    name = "Posts"
+    parent = "rss"
+    url = "/posts/index.xml"
+    weight = 3
+[[main]]
+    name = "All"
+    parent = "rss"
+    url = "/index.xml"
+    weight = 4

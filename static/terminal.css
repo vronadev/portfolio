@@ -445,3 +445,7 @@ button {
 .menu__dropdown li a {
   white-space: nowrap;
 }
+
+.bookmark-desc p {
+  margin: 0;
+}
