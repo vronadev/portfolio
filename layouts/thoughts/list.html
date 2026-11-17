@@ -33,13 +33,17 @@
         <div class="post-meta">
           <a href="{{ .Permalink }}" style="text-decoration: none;">
             <time class="post-date">
-              {{ .Date.Format "2006-01-02 15:04" }}
+              {{ if .Title }}
+                {{ .Title }}
+              {{ else }}
+                {{ .Date.Format "2006-01-02 15:04" }}
+              {{ end }}
             </time>
           </a>
-          {{- if eq $.Parent $.Site.Home -}}
-            &nbsp;·&nbsp;
-            <a href="{{ .Parent.RelPermalink }}">[{{ .Date.Format "2006-01-02" }}]</a>
-          {{- end -}}
+          <!-- {{- if eq $.Parent $.Site.Home -}} -->
+          <!--   &nbsp;·&nbsp; -->
+          <!--   <a href="{{ .Parent.RelPermalink }}">[{{ .Date.Format "2006-01-02" }}]</a> -->
+          <!-- {{- end -}} -->
         </div>
 
         <div class="post-content">
