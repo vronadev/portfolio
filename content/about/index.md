@@ -51,4 +51,4 @@ When I'm not writing web software, I spend my time experimenting with systems pr
 
 ## Get in Touch
 
-If you want to talk shop about Rust, graphics programming, self-hosting, or have a problem that needs a software solution, feel free to reach out via [Email](mailto:your@email.com) or check out my code on [GitHub](https://github.com/yourusername).
+If you want to talk shop about Rust, graphics programming, self-hosting, or have a problem that needs a software solution, feel free to reach out via [Email](mailto:matt@vrona.dev) or check out my code on [GitHub](https://github.com/vronadev).
